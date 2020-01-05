@@ -31,8 +31,15 @@ RUN apt-get update && \
   libnfs-dev \
   libiscsi-dev \
   sudo \
+  ssh \
+  rsync \
   ca-certificates && update-ca-certificates
 COPY ./ /
+RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain && \ 
+  cd riscv-gnu-toolchain && \
+  ./configure --prefix=/opt/riscv64 --enable-multilib && \
+  make newlib -j $(nproc) && \
+  make linux -j $(nproc)
+
 RUN /bin/bash /run.sh
 ENTRYPOINT /bin/bash /image.sh
-

@@ -4,13 +4,6 @@
 
 set -x
 
-git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
-cd riscv-gnu-toolchain
-./configure --prefix=/opt/riscv64 --enable-multilib
-make newlib -j $(nproc)
-make linux -j $(nproc)
-cd ..
-
 source env_var.sh
 
 git clone  https://git.qemu.org/git/qemu.git qemu
@@ -19,7 +12,7 @@ cd qemu
 make -j $(nproc)
 cd ..
 
-git clone https://github.com/michaeljclark/busybear-linux.git
+git clone https://github.com/reSHARMA/busybear-linux.git
 git clone https://github.com/torvalds/linux
 cd linux
 git checkout v4.19-rc3
@@ -40,6 +33,4 @@ cd build
 make -j $(nproc)
 cd ../../
 
-cd busybear-linux
-make -j $(nproc)
-cd ..
+cd busybear-linux && make -j $(nproc)

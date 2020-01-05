@@ -8,6 +8,7 @@ source env_var.sh
 #
 # locate compiler
 #
+
 GCC_DIR=$(dirname $(which ${CROSS_COMPILE}gcc))/..
 if [ ! -d ${GCC_DIR} ]; then
     echo "Cannot locate ${CROSS_COMPILE}gcc"
@@ -19,7 +20,6 @@ fi
 #
 rm -f ${IMAGE_FILE}
 dd if=/dev/zero of=${IMAGE_FILE} bs=1M count=${IMAGE_SIZE}
-chown ${UID}:${GID} ${IMAGE_FILE}
 /sbin/mkfs.ext4 -j -F ${IMAGE_FILE}
 test -d mnt || mkdir mnt
 mount -o loop ${IMAGE_FILE} mnt
