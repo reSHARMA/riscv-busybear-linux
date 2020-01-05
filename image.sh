@@ -3,6 +3,7 @@
 set -e
 
 . busybear.config
+source env_var.sh
 
 #
 # locate compiler
@@ -110,3 +111,5 @@ fi
 #
 umount mnt
 rmdir mnt
+
+./start-qemu.sh

@@ -20,10 +20,19 @@ RUN apt-get update && \
   patchutils \
   bc \
   zlib1g-dev \
-  libexpat-dev
-
-COPY ./* /
-RUN chmod +x /run.sh
-ENTRYPOINT ["bash", "run.sh"]
-
+  libexpat-dev \
+  git \
+  python3 \
+  pkg-config \
+  libglib2.0-dev \
+  libfdt-dev \
+  libpixman-1-dev \
+  zlib1g-dev \
+  libnfs-dev \
+  libiscsi-dev \
+  sudo \
+  ca-certificates && update-ca-certificates
+COPY ./ /
+RUN /bin/bash /run.sh
+ENTRYPOINT /bin/bash /image.sh
 
