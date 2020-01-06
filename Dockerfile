@@ -35,7 +35,7 @@ RUN apt-get update && \
   rsync \
   ca-certificates && update-ca-certificates
 COPY ./ /
-RUN git clone --recursive https://github.com/riscv/riscv-gnu-toolchain && \ 
+RUN git clone --depth 1 -j16 --recursive https://github.com/riscv/riscv-gnu-toolchain && \ 
   cd riscv-gnu-toolchain && \
   ./configure --prefix=/opt/riscv64 --enable-multilib && \
   make newlib -j $(nproc) && \

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source env_var.sh
 . busybear.config
 
 while [[ $# -gt 0 ]] && [[ ."$1" = .--* ]] ;

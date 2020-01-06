@@ -6,16 +6,16 @@ set -x
 
 source env_var.sh
 
-git clone  https://git.qemu.org/git/qemu.git qemu
+git clone https://git.qemu.org/git/qemu.git qemu
 cd qemu
 ./configure --target-list=riscv64-softmmu
 make -j $(nproc)
+make install
 cd ..
 
 git clone https://github.com/reSHARMA/busybear-linux.git
-git clone https://github.com/torvalds/linux
+git clone --depth 1 https://github.com/torvalds/linux --branch v4.19-rc3
 cd linux
-git checkout v4.19-rc3
 cp ../busybear-linux/conf/linux.config .config
 make -j $(nproc) CROSS_COMPILE=riscv64-unknown-linux-gnu- ARCH=riscv olddefconfig
 #make -j $(nproc) ARCH=riscv CROSS_COMPILE=riscv64-unknown-linux-gnu- nconfig
