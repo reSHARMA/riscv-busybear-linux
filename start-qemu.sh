@@ -21,7 +21,7 @@ do
   esac
 done
 
-QEMU_NETDEV="type=tap,script=./ifup.sh,downscript=./ifdown.sh"
+QEMU_NETDEV="type=tap,ifname=tap0,script=no,downscript=no"
 
 # locate QEMU
 QEMU_SYSTEM_BIN=$(which qemu-system-${ARCH})
@@ -32,7 +32,7 @@ fi
 
 # construct command
 cmd="${QEMU_SYSTEM_BIN} -nographic -machine virt \
-	-kernel riscv-pk/build/bbl \
+	-kernel /busybear-linux/build/riscv-pk/bbl \
 	-append \"root=/dev/vda ro console=ttyS0\" \
 	-drive file=busybear.bin,format=raw,id=hd0 \
 	-device virtio-blk-device,drive=hd0 \
