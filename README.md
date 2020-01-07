@@ -12,4 +12,10 @@ Username: root
 Password: busybear
 ```
 
+If you want to tweak the configuration before running qemu:
+```sh
+docker pull reshabhsh/riscv-linux:v2
+# Inside the container run image.sh for starting qemu
+```
+
 Credits: Derived from the awesome work hosted here: https://github.com/michaeljclark/busybear-linux
