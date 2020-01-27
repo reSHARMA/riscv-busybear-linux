@@ -42,4 +42,3 @@ RUN git clone --depth 1 -j16 --recursive https://github.com/riscv/riscv-gnu-tool
   make linux -j $(nproc)
 
 RUN /bin/bash /run.sh
-ENTRYPOINT /bin/bash /image.sh
